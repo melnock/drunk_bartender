@@ -6,7 +6,13 @@ has_many :recipes, through: :cocktails
   def make_a_drink(liquor)
     self.drunk +=1
     drink = Cocktail.new(liquor)
-    puts "Cheers! Drink up!"
+    puts "                    (/;
+          .--..-(/;
+          |    (/;
+        __|====/=|__
+       (____________)"
+    puts "Gimme a sec!"
+    drink
   end
 
   def give_water
@@ -15,19 +21,29 @@ has_many :recipes, through: :cocktails
   end
 
   def give_advice
-    if @drunk < 5
-      puts "Nice weather, eh?"
-    elsif @drunk < 8
+    if self.drunk < 5
+      puts "Reach for the stars!"
+    elsif self.drunk < 8
       puts "Nother drink???"
     else
       puts "zzzzzzzzz"
     end
   end
 
+  def drunken
+    if self.drunk <5
+      puts "I'm fine!"
+    elsif self.drunk <8
+      puts "I'm a little drunk, but I love you!"
+    else
+      puts "uuuuuhhhhh......."
+    end
+  end
+
   def small_talk
-    if @drunk < 5
+    if self.drunk < 5
       puts "Nice weather, eh?"
-    elsif @drunk < 8
+    elsif self.drunk < 8
       puts "Nother drink???"
     else
       puts "zzzzzzzzz"
@@ -37,7 +53,7 @@ has_many :recipes, through: :cocktails
   def tell_a_joke
     joke = RestClient.get("http://api.icndb.com/jokes/random")
     joke_hash = JSON.parse(joke)["value"]["joke"]
-    puts joke_hash
+    joke_hash + "HAHAHAHAHA!!!!"
   end
 
 

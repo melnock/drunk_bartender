@@ -5,6 +5,16 @@ class Cocktail<ActiveRecord::Base
 
   @@id = ""
 
+    def initialize (alcohol:)
+      super
+      @alcohol = :alcohol
+      get_list_by_ingredient(alcohol)
+      get_random_drink
+      get_random_drink_id
+      get_cocktail_from_id
+      cocktail_info
+    end
+
   def get_list_by_ingredient(alcohol)
     list_by_ingredient = RestClient.get("http://www.thecocktaildb.com/api/json/v1/1/filter.php?i=#{alcohol}")
     @ingredient_hash = JSON.parse(list_by_ingredient)
@@ -30,6 +40,10 @@ class Cocktail<ActiveRecord::Base
 
   def cocktail_info
     cocktail_info = self.get_cocktail_from_id["drinks"][0]
+  end
+
+  def name
+    name = cocktail_info["strDrink"]
   end
 
   def ingredients
