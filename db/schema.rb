@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 7) do
 
   create_table "bartenders", force: :cascade do |t|
     t.string "name"
-    t.integer "drunk", default: 0
+    t.integer "drunk", default: 4
   end
 
   create_table "cocktails", force: :cascade do |t|

@@ -12,6 +12,7 @@ has_many :recipes, through: :cocktails
         __|====/=|__
        (____________)"
     puts "Gimme a sec!"
+    puts self.drink_phrases
     drink
   end
 
@@ -53,8 +54,17 @@ has_many :recipes, through: :cocktails
   def tell_a_joke
     joke = RestClient.get("http://api.icndb.com/jokes/random")
     joke_hash = JSON.parse(joke)["value"]["joke"]
-    joke_hash + "HAHAHAHAHA!!!!"
+    puts joke_hash + " HAHAHAHAHA!!!!"
   end
 
+  def drink_phrases
+    phrases = ["One for you, one for me!",
+      "Hope you don't mind if I make one of those for myself, too!",
+      "That's one of my favorites! I think I'll have one, too!",
+      "Classically irresistable! Let's make it two!",
+      "I don't have any problems. I drink with my friends. Who are my friends you ask? All my patrons!",
+      "You know what's no fun? Drinking alone. So, I will have one with you!"]
+    phrases.sample
+  end
 
 end
