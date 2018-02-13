@@ -14,7 +14,7 @@ def shlur(string)
 end
 
 def burp(string)
-  drunkenness = 10
+  drunkenness = 8
   split_string = string.split(' ')
   counter = 0
   while counter < split_string.length-1
