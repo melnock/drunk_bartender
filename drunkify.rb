@@ -29,6 +29,5 @@ def burp(string)
   puts split_string.join(' ')
 end
 
-
 x = shlur("Pour all ingredients directly into highball glass filled with ice. Stir gently. Garnish. Add a dash of Angostura bitters.")
 burp(x)
