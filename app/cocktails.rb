@@ -44,6 +44,6 @@ class Cocktail<ActiveRecord::Base
       end
     end
     ingredients
-
   end
+
 end

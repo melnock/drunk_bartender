@@ -41,4 +41,8 @@ has_many :recipes, through: :cocktails
   end
 
 
+  
+
+
+
 end
