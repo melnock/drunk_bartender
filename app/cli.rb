@@ -2,7 +2,17 @@ require "io/console"
 require "colorized_string"
   class CLI
 
+  def intro
+    system 'clear'
+    puts.magenta
+
+  puts "Just a neighborhood bar for those who like unique drinks and to never drink alone!".green
+
+    sleep 5
+  end
+
   def welcome(barkeep)
+    intro
     system 'clear'
     pid = fork{ exec 'afplay', 'media/backgroundmusic.wav'}
 
@@ -60,7 +70,12 @@ _____|_________|     ||               | |               ||
        puts "Hi, #{patron.name}. My name is #{barkeep.name}. What can I help you with?".colorize(:light_blue)
       input = gets.chomp.downcase
 
-      if ["drink", "beer", "wine", "water", "soda", "liquor", "wasted", "alcohol", "to get drunk"].any?{|el| input.include?(el)}
+      if barkeep.drunk > 12
+        puts "Your bartender is too drunk. Time to go hoooommmme!"
+        sleep 3
+        pid = fork{ exec 'killall', "afplay" }
+        break
+      elsif ["drink", "beer", "wine", "water", "soda", "liquor", "wasted", "alcohol", "to get drunk"].any?{|el| input.include?(el)}
         order_a_drink(barkeep)
         system 'clear'
       elsif input.include?("joke")
