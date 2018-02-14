@@ -77,11 +77,6 @@ class Cocktail<ActiveRecord::Base
         break
       end
     end
-<<<<<<< HEAD
-    ingredients
-  end
-
-=======
       ingredients << make_a_sample
   end
 
@@ -115,5 +110,4 @@ class Cocktail<ActiveRecord::Base
   # end
 
 
->>>>>>> origin
 end
