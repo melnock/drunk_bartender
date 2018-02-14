@@ -77,7 +77,7 @@ class Cocktail<ActiveRecord::Base
         break
       end
     end
-      ingredients << make_a_sample
+    ingredients << make_a_sample
   end
 
   def find_food_ingredients_hash
@@ -94,20 +94,6 @@ class Cocktail<ActiveRecord::Base
     ingredients_array = ["1 cup : ", "1 squirt : ", "2 tbsp : ", "pinch of: ", "3 dollops: ", "1/2 shot: ", "3/4 lb: ", "8 squeezes of: ", "5/16 tsp: "]
     sample = ingredients_array.sample + make_food_array.sample
   end
-  #
-  # def drunkify_ingredient
-  #   bartender = self.bartender
-  #
-  #   if bartender.drunk > 4 && bartender.drunk < 10
-  #     self.ingredients << make_a_sample
-  #   # elsif bartender.drunk >= 10
-  #   #   2.times do
-  #   #     self.ingredients << make_a_sample
-  #   #   end
-  #   else
-  #     self.ingredients
-  #   end
-  # end
 
 
 end
