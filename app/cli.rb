@@ -44,10 +44,7 @@ _____|_________|     ||               | |               ||
     puts "                            Welcome to the Baloon Bar"
   end
 
-  def make_drink_info(drink, barkeep)
-    drink_info = barkeep.make_a_drink(alcohol: drink)
-    puts "This is #{drink_info.name}: made with..."+drink_info.ingredients.join(", ")
-  end
+
 
   def choice(barkeep, patron)
 
@@ -65,9 +62,9 @@ _____|_________|     ||               | |               ||
                                                               |___|
       -)---)---)---)---)---)---)---)---)---)---)---)----)----)----)----)"
        puts "Hi, #{patron.name}. My name is #{barkeep.name}. What can I help you with?"
-      input = gets.chomp
+      input = gets.chomp.downcase
 
-      if input.include?("drink")
+      if ["drink", "beer", "wine", "water", "soda", "liquor", "wasted", "alcohol", "to get drunk"].any?{|el| input.include?(el)}
         order_a_drink(barkeep)
       elsif input.include?("joke")
         barkeep.tell_a_joke
@@ -80,7 +77,7 @@ _____|_________|     ||               | |               ||
       elsif input.include?("drunk")
         barkeep.drunken
       else
-        puts "We can't do that here."
+        puts "We can't do that here. Ask me for a joke or some advice or a drink!"
       end
       continue
     end
@@ -134,13 +131,22 @@ _____|_________|     ||               | |               ||
          make_drink_info("mezcal", barkeep)
          puts "♪♫♬smoooooke on the waaaaater!♬♪♫"
          puts barkeep.drink_phrases
-      elsif input.include? "non-alcoholic"
-        puts "Fruit juice! Soda!"
+      elsif input.include?("non-alcoholic")
+        make_drink_info("non-alcoholic", barkeep)
+        puts "Fruit juice! Soda! Sobriety!"
+      elsif input.include?("wine")
+        puts "IIII'm tiiiiiiireeeeeeddddd!!! I waaaaaant to gooo hoooommmme!!! Ugghhhhhh!"
       elsif input == "water"
         barkeep.give_water
         puts "Hydration Station! Choo! Choo!!"
       else
         puts "We don't have that drink here..."
       end
+  end
+
+  def make_drink_info(drink, barkeep)
+    drink_info = barkeep.make_a_drink(alcohol: drink)
+    drink_next = drink_info.ingredients
+    puts "This is #{drink_info.name}: made with..."+ drink_next.join(", ")
   end
 end
