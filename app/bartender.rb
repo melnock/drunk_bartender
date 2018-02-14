@@ -23,12 +23,14 @@ has_many :recipes, through: :cocktails
   end
 
   def give_advice
+    advice = ["Reach for the stars!", "Don't swim right after you eat!", "Brush your teeth twice a day!"]
+    bad_advice = ["Nother drink? Maaaaaybe five?", "Don't eat before you drink. You will get all the calories you need from beer.", "Use spaces instead of tabs.", "Eat what you like. Especially if you like cake."]
     if self.drunk < 5
-      puts "Reach for the stars!"
+      puts advice.sample
     elsif self.drunk < 8
-      puts "Nother drink???"
+      puts bad_advice.sample
     else
-      puts "zzzzzzzzz"
+      puts "zzzzzzz*hic*zz"
     end
   end
 

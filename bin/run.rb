@@ -13,8 +13,3 @@ i = Cocktail.new(alcohol: "vodka")
 a = CLI.new
 barkeep = Bartender.create(name: "Jeff")
 a.welcome(barkeep)
-
-# a.choice(barkeep)
-
-
-Pry.start

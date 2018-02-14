@@ -16,7 +16,6 @@ require "colorized_string"
     if age_in.to_i < 21
       puts "You are too young drink any alcohol.".colorize(:red)
       welcome(barkeep)
-
     else
       choice(barkeep, patron)
       sleep 1

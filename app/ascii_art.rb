@@ -1,4 +1,5 @@
 require 'pry'
+require "colorized_string"
 
 class Ascii
 
@@ -45,7 +46,7 @@ class Ascii
      |{} |
      | {}|
      |___|","
-     
+
              /\\
             /  \\
       |    / |
@@ -57,7 +58,7 @@ class Ascii
        `----`"]
 
   def self.rand_art
-    @@ascii_art.sample
+    @@ascii_art.sample.magenta
   end
 
 
@@ -133,7 +134,7 @@ class Ascii
 └)----)---)---)---)---)---)---)---)---)---)---)---)----)----)----)----)----)"]
 
   def self.select_frame(x)
-    puts @@bar_frames[x]
+    puts @@bar_frames[x].white
   end
 
 end
