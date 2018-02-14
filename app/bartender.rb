@@ -1,3 +1,5 @@
+require "colorized_string"
+
 class Bartender<ActiveRecord::Base
 has_many :users
 has_many :cocktails
@@ -67,15 +69,8 @@ has_many :recipes, through: :cocktails
       "Classically irresistable! Let's make it two!",
       "I don't have any problems. I drink with my friends. Who are my friends you ask? All my patrons!",
       "You know what's no fun? Drinking alone. So, I will have one with you!"]
-    drunkify_text(phrases.sample)
+    drunkify_text(phrases.sample).green
   end
-
-<<<<<<< HEAD
-  
-
-
-=======
-
 
   def drunkify_text(string)
     if self.drunk > 4 && self.drunk < 10
@@ -123,11 +118,39 @@ has_many :recipes, through: :cocktails
     string
   end
 
+  def tip
+    loop do
+      puts "Do you want to leave a tip?".light_blue
+      puts "yes or no".light_blue
+      input = gets.chomp.downcase
 
-  # x = drunkify_text("Pour all ingredients directly into highball glass filled with ice. Stir gently. Garnish. Add a dash of Angostura bitters.", 5)
-  # %x( say #{x} )
-  # return x
+      if input == "yes"
+        puts "Thanks! What kind of a tip?".light_blue
+        puts "A drink, money, or advice.".light_blue
+        tip_type = gets.chomp.downcase
+        if tip_type.include? "drink"
+          self.drunk += 1
+          puts drunkify_text("My favorite!").green
+          break
+        elsif tip_type.include? "money"
+          puts "Cha-ching! Cha-ching!".green
+          break
+        elsif tip_type.include? "advice"
+          puts "Okay. I'm ready. What's your advice?".light_blue
+          gets.chomp
+          puts "You are wise beyond your plentiful years.".green
+          break
+        else
+          puts "Speak up, kiddo. I can't understand what you are saying!".red
+        end
+      elsif input == "no"
+        puts "I see. You don't appreciate my art.".red
+        break
+      else
+        puts "I'm sure you are hilarious, but you have to answer yes or no.".red
+      end
+    end
+  end
 
->>>>>>> origin
 
 end
