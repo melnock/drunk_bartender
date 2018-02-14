@@ -11,11 +11,7 @@ has_many :recipes, through: :cocktails
     self.drunk +=1
     drink = Cocktail.create(liquor)
     drink.bartender_id = self.id
-    puts "                    (/;
-          .--..-(/;
-          |    (/;
-        __|====/=|__
-       (____________)"
+    Ascii.select_frame(1)
     puts "Gimme a sec!"
     puts self.drink_phrases
     drink

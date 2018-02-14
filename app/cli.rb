@@ -3,20 +3,26 @@ require "colorized_string"
   class CLI
 
   def welcome(barkeep)
+    system 'clear'
     pid = fork{ exec 'afplay', 'media/08EdithPiaf-NonJeNeRegretteRien-1960.mp3'}
+
     welcome_image
     puts "We are really friendly here. We need your name and age to begin.".colorize(:green)
-    puts "Name:".colorize(:green)
+    puts "Name:".colorize(:light_blue)
     name_in = gets.chomp
-    puts "Age:".colorize(:green)
+    puts "Age:".colorize(:light_blue)
     age_in = gets.chomp
     patron = User.create(name: name_in, age: age_in)
     if age_in.to_i < 21
       puts "You are too young drink any alcohol.".colorize(:red)
       welcome(barkeep)
+
     else
       choice(barkeep, patron)
+      sleep 1
+      system 'clear'
     end
+
   end
 
   def welcome_image
@@ -51,12 +57,13 @@ _____|_________|     ||               | |               ||
   def choice(barkeep, patron)
 
     loop do
-
+      Ascii.select_frame(0)
        puts "Hi, #{patron.name}. My name is #{barkeep.name}. What can I help you with?".colorize(:light_blue)
       input = gets.chomp.downcase
 
       if ["drink", "beer", "wine", "water", "soda", "liquor", "wasted", "alcohol", "to get drunk"].any?{|el| input.include?(el)}
         order_a_drink(barkeep)
+        system 'clear'
       elsif input.include?("joke")
         barkeep.tell_a_joke
       elsif input.include?("advice")
@@ -76,7 +83,6 @@ _____|_________|     ||               | |               ||
   end
 
   def continue
-    sleep 2
     puts "       _
       /\\`--.
      |o-|   )>=====o
@@ -136,13 +142,16 @@ _____|_________|     ||               | |               ||
       else
         puts "We don't have that drink here...".colorize(:red)
       end
-
       barkeep.tip
+      sleep 2
+      system 'clear'
   end
 
   def make_drink_info(drink, barkeep)
     drink_info = barkeep.make_a_drink(alcohol: drink)
     drink_next = drink_info.ingredients
+    system 'clear'
+    Ascii.select_frame(0)
     puts "This is #{drink_info.name}: made with..."+ drink_next.join(", ").colorize(:purple)
   end
 end
