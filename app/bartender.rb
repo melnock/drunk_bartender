@@ -1,3 +1,5 @@
+require "colorized_string"
+
 class Bartender<ActiveRecord::Base
 has_many :users
 has_many :cocktails
@@ -67,7 +69,7 @@ has_many :recipes, through: :cocktails
       "Classically irresistable! Let's make it two!",
       "I don't have any problems. I drink with my friends. Who are my friends you ask? All my patrons!",
       "You know what's no fun? Drinking alone. So, I will have one with you!"]
-    drunkify_text(phrases.sample)
+    drunkify_text(phrases.sample).green
   end
 
 
@@ -120,32 +122,34 @@ has_many :recipes, through: :cocktails
 
   def tip
     loop do
-      puts "Do you want to leave a tip?"
-      puts "yes or no"
+      puts "Do you want to leave a tip?".light_blue
+      puts "yes or no".light_blue
       input = gets.chomp.downcase
 
       if input == "yes"
-        puts "Thanks! What kind of a tip?"
-        puts "A drink, money, or advice."
+        puts "Thanks! What kind of a tip?".light_blue
+        puts "A drink, money, or advice.".light_blue
         tip_type = gets.chomp.downcase
         if tip_type.include? "drink"
           self.drunk += 1
-          puts "My favorite!"
+          puts drunkify_text("My favorite!").green
           break
         elsif tip_type.include? "money"
-          puts "Cha-ching! Cha-ching!"
+          puts "Cha-ching! Cha-ching!".green
           break
         elsif tip_type.include? "advice"
-          puts "You are wise beyond your plentiful years."
+          puts "Okay. I'm ready. What's your advice?".light_blue
+          gets.chomp
+          puts "You are wise beyond your plentiful years.".green
           break
         else
-          puts "Speak up, kiddo. I can't understand what you are saying!"
+          puts "Speak up, kiddo. I can't understand what you are saying!".red
         end
       elsif input == "no"
-        puts "I see. You don't appreciate my art."
+        puts "I see. You don't appreciate my art.".red
         break
       else
-        puts "I'm sure you are hilarious, but you have to answer yes or no."
+        puts "I'm sure you are hilarious, but you have to answer yes or no.".red
       end
     end
   end
