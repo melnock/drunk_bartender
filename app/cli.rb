@@ -2,7 +2,9 @@ require "io/console"
   class CLI
 
   def welcome(barkeep)
-    puts " Welcome to Baloon Bar.  We are really friendly here. We need your name and age to begin."
+    pid = fork{ exec 'afplay', 'media/08EdithPiaf-NonJeNeRegretteRien-1960.mp3'}
+    welcome_image
+    puts "We are really friendly here. We need your name and age to begin."
     puts "Name:"
     name_in = gets.chomp
     puts "Age:"
@@ -14,12 +16,11 @@ require "io/console"
     else
       choice(barkeep, patron)
     end
-
   end
 
   def welcome_image
     # puts out a welcome message here!
-    puts "			_______________________________________________________________________________
+    puts "_______________________________________________________________________________
                           .-|-|----------------|-|-.
                           | .-. .-. .  .-. .-. . . |_
                      .--~~| |-| |-| |  | | | | |\\| | ~~--.
@@ -49,7 +50,7 @@ _____|_________|     ||               | |               ||
   def choice(barkeep, patron)
 
     loop do
-      welcome_image
+
       puts "                    (/;
             .--..-(/;
             |    (/;
@@ -71,13 +72,14 @@ _____|_________|     ||               | |               ||
       elsif input.include?("advice")
         barkeep.give_advice
       elsif input == "exit"
+        pid = fork{ exec 'killall', "afplay" }
         break
       elsif input.include?("weather")
         barkeep.small_talk
       elsif input.include?("drunk")
         barkeep.drunken
       else
-        puts "We can't do that here. Ask me for a joke or some advice or a drink!"
+        puts "We can't do that here. Ask me for a joke or some advice or a drink! Whenever you want to leave: type 'exit'"
       end
       continue
     end
@@ -90,7 +92,7 @@ _____|_________|     ||               | |               ||
       \\/.--'"
     puts "Press any key to ring the bell."
     STDIN.getch
-    puts "ding!"
+    system("say" "-v Pipe Organ" "Ding Dong Ding")
     print "            \r" # extra space to overwrite in case next sentence is short
     system 'clear'
   end
@@ -142,6 +144,8 @@ _____|_________|     ||               | |               ||
       else
         puts "We don't have that drink here..."
       end
+
+      barkeep.tip
   end
 
   def make_drink_info(drink, barkeep)

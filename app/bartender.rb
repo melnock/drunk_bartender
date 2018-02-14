@@ -118,6 +118,37 @@ has_many :recipes, through: :cocktails
     string
   end
 
+  def tip
+    loop do
+      puts "Do you want to leave a tip?"
+      puts "yes or no"
+      input = gets.chomp.downcase
+
+      if input == "yes"
+        puts "Thanks! What kind of a tip?"
+        puts "A drink, money, or advice."
+        tip_type = gets.chomp.downcase
+        if tip_type.include? "drink"
+          self.drunk += 1
+          puts "My favorite!"
+          break
+        elsif tip_type.include? "money"
+          puts "Cha-ching! Cha-ching!"
+          break
+        elsif tip_type.include? "advice"
+          puts "You are wise beyond your plentiful years."
+          break
+        else
+          puts "Speak up, kiddo. I can't understand what you are saying!"
+        end
+      elsif input == "no"
+        puts "I see. You don't appreciate my art."
+        break
+      else
+        puts "I'm sure you are hilarious, but you have to answer yes or no."
+      end
+    end
+  end
 
   # x = drunkify_text("Pour all ingredients directly into highball glass filled with ice. Stir gently. Garnish. Add a dash of Angostura bitters.", 5)
   # %x( say #{x} )
