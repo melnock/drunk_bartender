@@ -137,4 +137,83 @@ class Ascii
     puts @@bar_frames[x].white
   end
 
+
+  @@numbers = [
+   "  .oooo.
+ d8P'`Y8b
+888    888
+888    888
+888    888
+`88b  d88'
+ `Y8bd8P'  
+    ",
+    "
+  .o
+o888
+ 888
+ 888
+ 888
+ 888
+o888o ",
+"
+  .oooo.
+.dP""Y88b
+      ]8P'
+    .d8P'
+  .dP'
+.oP     .o
+8888888888",
+"
+  .oooo.
+.dP""Y88b
+      ]8P'
+    <88b.
+     `88b.
+o.   .88P
+`8bd88P'",
+"
+      .o
+    .d88
+  .d'888
+.d'  888
+88ooo888oo
+     888
+    o888o",
+"
+  oooooooo
+ dP\"\"\"\"\"\"\"
+d88888b.
+    `Y88b
+      ]88
+o.   .88P
+`8bd88P'   ",
+"
+    .ooo
+  .88'
+ d88'
+d888P\"Ybo.
+Y88[   ]88
+`Y88   88P
+ `88bod8'  ",
+ "
+ ooooooooo
+d\"\"\"\"\"\"\"8'
+      .8'
+     .8'
+    .8'
+   .8'
+  .8'",
+"
+ .ooooo.
+d88'   `8.
+Y88..  .8'
+ `88888b.
+.8'  ``88b
+`8.   .88P
+ `boood8'  "]
+
+  def self.numbers
+    @@numbers
+  end
+
 end
