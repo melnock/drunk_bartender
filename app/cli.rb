@@ -4,13 +4,13 @@ require "colorized_string"
 
   def intro
     system 'clear'
-    puts" ,---.     .--.  ,-.    .---.   .---.  .-. .-.  ,---.     .--.  ,---.
- | .-.\\   / /\\ \\ | |   / .-. ) / .-. ) |  \\| |  | .-.\\   / /\\ \\ | .-.\\
- | |-' \\ / /__\\ \\| |   | | |(_)| | |(_)|   | |  | |-' \\ / /__\\ \\| `-'/
- | |--. \\|  __  || |   | | | | | | | | | |\\  |  | |--. \\|  __  ||   (
- | |`-' /| |  |)|| `--.\\ `-' / \\ `-' / | | |)|  | |`-' /| |  |)|| |\\ \\
- /( `--' |_|  (_)|( __.')---'   )---'  /(  (_)  /( `--' |_|  (_)|_| \\)\\
-(__)             (_)   (_)     (_)    (__)     (__)                 (__) ".magenta
+    puts"     ,---.     .--.  ,-.    .---.   .---.  .-. .-.  ,---.     .--.  ,---.
+     | .-.\\   / /\\ \\ | |   / .-. ) / .-. ) |  \\| |  | .-.\\   / /\\ \\ | .-.\\
+     | |-' \\ / /__\\ \\| |   | | |(_)| | |(_)|   | |  | |-' \\ / /__\\ \\| `-'/
+     | |--. \\|  __  || |   | | | | | | | | | |\\  |  | |--. \\|  __  ||   (
+     | |`-' /| |  |)|| `--.\\ `-' / \\ `-' / | | |)|  | |`-' /| |  |)|| |\\ \\
+     /( `--' |_|  (_)|( __.')---'   )---'  /(  (_)  /( `--' |_|  (_)|_| \\)\\
+    (__)             (_)   (_)     (_)    (__)     (__)                 (__) ".magenta
 
   puts "Just a neighborhood bar for those who like unique drinks and to never drink alone!".green
 
@@ -28,7 +28,7 @@ require "colorized_string"
 ──┴──┴  |___|  ---   ~~~~~~~~~`'\",    |___|     --- _|_ ~~~~~~~`'\",    |__| |___|
                                                                                    ".green
 
-    sleep 5
+    sleep 4
   end
 
   def welcome(barkeep)
@@ -44,7 +44,8 @@ require "colorized_string"
     age_in = gets.chomp
     patron = User.create(name: name_in, age: age_in)
     if age_in.to_i < 21
-      puts "You are too young drink any alcohol.".colorize(:red)
+      puts "You are too young drink any alcohol.".colorize(:red).blink
+      sleep 2
       welcome(barkeep)
     else
       choice(barkeep, patron)
