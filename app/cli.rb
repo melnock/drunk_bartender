@@ -109,6 +109,11 @@ _____|_________|     ||               | |               ||
         barkeep.small_talk
       elsif input.include?("drunk")
         barkeep.drunken
+      elsif input == "how many drinks have I had"
+        number = barkeep.drunk - 4
+        puts "You've had:".blue
+        puts Ascii.numbers[number].blink.red
+        puts "drinks.".blue
       else
         puts "We can't do that here. Ask me for a joke or some advice or a drink! Whenever you want to leave: type 'exit'".colorize(:red)
       end
@@ -165,8 +170,9 @@ _____|_________|     ||               | |               ||
          make_drink_info("mezcal", barkeep)
          puts "♪♫♬smoooooke on the waaaaater!♬♪♫".colorize(:green)
          puts barkeep.drink_phrases
-      elsif input.include?("non-alcoholic")
+      elsif ["non-alcoholic", "soda", "juice", "virgin"].any?{|el| input.include?(el)}
         make_drink_info("non-alcoholic", barkeep)
+        barkeep.drunk -=1
         puts "Fruit juice! Soda! Sobriety!"
       elsif input.include?("wine")
         puts "IIII'm tiiiiiiireeeeeeddddd!!! I waaaaaant to gooo hoooommmme!!! Ugghhhhhh!".colorize(:green)
