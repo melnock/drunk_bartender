@@ -34,7 +34,7 @@ require "colorized_string"
   def welcome(barkeep)
     intro
     system 'clear'
-    pid = fork{ exec 'afplay', 'media/backgroundmusic.wav'}
+    pid = fork{ exec 'afplay', 'media/Bolero_64kb.mp3'}
 
     welcome_image
     puts "We are really friendly here. We need your name and age to begin.".colorize(:green)
