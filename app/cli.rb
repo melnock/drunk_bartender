@@ -45,6 +45,7 @@ require "colorized_string"
     patron = User.create(name: name_in, age: age_in)
     if age_in.to_i < 21
       puts "You are too young drink any alcohol.".colorize(:red)
+      sleep 2
       welcome(barkeep)
     else
       choice(barkeep, patron)
@@ -56,28 +57,7 @@ require "colorized_string"
 
   def welcome_image
     # puts out a welcome message here!
-    puts "_______________________________________________________________________________
-                          .-|-|----------------|-|-.
-                          | .-. .-. .  .-. .-. . . |_
-                     .--~~| |-| |-| |  | | | | |\\| | ~~--.
-                     |    | `-' ` ' `- `-' `-' ' ' |     |
-                     |    `-.____________________.-'     |
-_______________      |                                   |
-     |         |     |                                   |
-  /  |   /  /  |     |                                   |
-/    |     /   |     | _______                   _______ |
-_____|_________|     ||       ~---_         _---~       ||
-     |    /    |     ||           ~---. .---~           ||
- / / |         |     ||               | |               ||
-  /  |  /   /  |     ||               | |               ||
-_____|_________|     ||               | |               ||
----------------'     ||               |  |               ||
-                     ||               | |               ||
-                     ||               | |               ||
-                     ||           .---' `---.           ||
-                     |`.______.---'         `---.______.'|
-               ______|                                   |______
---------~~~~~~~Lester                                         AMC~~~~~~~--------".colorize(:red)
+    Ascii.baloon_bar_entrance
     puts "                            Welcome to the Baloon Bar".colorize(:red)
   end
 
@@ -95,6 +75,11 @@ _____|_________|     ||               | |               ||
         sleep 3
         pid = fork{ exec 'killall', "afplay" }
         break
+      elsif input.include? "how many"
+        number = barkeep.drunk - 4
+        puts "You've had:".blue
+        puts Ascii.numbers[number].blink.red
+        puts "drinks.".blue
       elsif ["drink", "beer", "wine", "water", "soda", "liquor", "wasted", "alcohol", "to get drunk"].any?{|el| input.include?(el)}
         order_a_drink(barkeep)
         system 'clear'
@@ -109,11 +94,6 @@ _____|_________|     ||               | |               ||
         barkeep.small_talk
       elsif input.include?("drunk")
         barkeep.drunken
-      elsif input == "how many drinks have I had"
-        number = barkeep.drunk - 4
-        puts "You've had:".blue
-        puts Ascii.numbers[number].blink.red
-        puts "drinks.".blue
       else
         puts "We can't do that here. Ask me for a joke or some advice or a drink! Whenever you want to leave: type 'exit'".colorize(:red)
       end
@@ -128,7 +108,7 @@ _____|_________|     ||               | |               ||
       \\/.--'".colorize(:yellow)
     puts "Press any key to ring the bell.".colorize(:green)
     STDIN.getch
-    system("say" "-v Pipe Organ" "Ding Dong Ding")
+    system("say -v fred Ding Dong Ding")
     print "            \r" # extra space to overwrite in case next sentence is short
     system 'clear'
     sleep 1

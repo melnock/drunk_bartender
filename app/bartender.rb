@@ -19,18 +19,18 @@ has_many :cocktails
 
   def give_water
     self.drunk -=1
-    puts drunkify_text("Hydration Station! Choo! Choo!")
+    puts drunkify_text("Hydration Station! Choo! Choo!").green
   end
 
   def give_advice
     advice = ["Reach for the stars!", "Don't swim right after you eat!", "Brush your teeth twice a day!"]
     bad_advice = ["Nother drink? Maaaaaybe five?", "Don't eat before you drink. You will get all the calories you need from beer.", "Use spaces instead of tabs.", "Eat what you like. Especially if you like cake."]
     if self.drunk < 5
-      puts advice.sample
+      puts advice.sample.magenta
     elsif self.drunk < 8
-      puts bad_advice.sample
+      puts bad_advice.sample.magenta
     else
-      puts "zzzzzzz*hic*zz"
+      puts "zzzzzzz*hic*zz".green
     end
   end
 
@@ -40,7 +40,7 @@ has_many :cocktails
     elsif self.drunk <8
       puts drunkify_text("I'm a little drunk, but I love you!")
     else
-      puts "uuuuuhhhhh......."
+      puts drunkify_text("uuuuuhhhhh.......")
     end
   end
 
@@ -50,7 +50,7 @@ has_many :cocktails
     elsif self.drunk < 8
       puts "Nother drink???"
     else
-      puts "zzzzzzzzz"
+      puts drunkify_text("zzzzzzzzz")
     end
   end
 
@@ -96,7 +96,7 @@ has_many :cocktails
         letter
       end
     end
-    shlurred.join('') + " Excuse me! I've had a few!"
+    shlurred.join('') + " Excuse me!"
   end
 
   def burp(string)
