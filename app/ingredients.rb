@@ -1,5 +1,6 @@
 
 class Ingredient<ActiveRecord::Base
+  has_many :cocktails
 
   def find_drink_ingredients_hash
     drink_ingredients = RestClient.get('http://www.thecocktaildb.com/api/json/v1/1/list.php?i=list')
