@@ -90,7 +90,7 @@ _____|_________|     ||               | |               ||
        puts "Hi, #{patron.name}. My name is #{barkeep.name}. What can I help you with?".colorize(:light_blue)
       input = gets.chomp.downcase
 
-      if barkeep.drunk > 12
+      if barkeep.drunk >= 11
         puts "Your bartender is too drunk. Time to go hoooommmme!"
         sleep 3
         pid = fork{ exec 'killall', "afplay" }

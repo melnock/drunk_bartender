@@ -1,7 +1,7 @@
 
 class Cocktail<ActiveRecord::Base
   belongs_to :bartender
-  has_many :ingredients, through: :recipes
+  has_many :ingredients
 
   @@id = ""
 

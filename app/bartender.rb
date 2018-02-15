@@ -3,7 +3,7 @@ require "colorized_string"
 class Bartender<ActiveRecord::Base
 has_many :users
 has_many :cocktails
-has_many :recipes, through: :cocktails
+
 
 
 
@@ -74,9 +74,9 @@ has_many :recipes, through: :cocktails
     if self.drunk > 4 && self.drunk < 10
       shlurred = shlur(string)
       burp(shlurred)
-    elsif self.drunk >= 10
+    elsif self.drunk >= 12
       string = string.split(' ').shuffle.join(' ')
-      self.drunk = 9
+      self.drunk = 11
       shlurred = shlur(string)
       burp(shlurred)
     else
