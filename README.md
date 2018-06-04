@@ -7,9 +7,10 @@ Ask him for a drink with a specific kind of liquor and see what you get! He has 
 
 Good luck and happy cocktail-ing!
 
+To see a walkthrough, [click here](https://youtu.be/TvWpziftyQI "click here")!
 
 =============================
-#Getting Started
+# Getting Started
 
 run "ruby bin/run.rb" in your terminal from your console.
 
