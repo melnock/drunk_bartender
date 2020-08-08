@@ -44,11 +44,7 @@ require "colorized_string"
     age_in = gets.chomp
     patron = User.create(name: name_in, age: age_in)
     if age_in.to_i < 21
-<<<<<<< HEAD
-      puts "You are too young drink any alcohol.".colorize(:red)
-=======
       puts "You are too young drink any alcohol.".colorize(:red).blink
->>>>>>> melissa
       sleep 2
       welcome(barkeep)
     else
